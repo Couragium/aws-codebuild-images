@@ -32,3 +32,21 @@ Or pass it to your build project
     });
 
 ```
+
+AWS CodeBuild ignores the [*ENTRYPOINT*](https://github.com/aws/aws-codebuild-docker-images/issues/254) so if you need to run a docker command, you should start the daemon yourself in your spec:
+```typescript
+    const spec = codebuild.BuildSpec.fromObject({
+        //[...]
+        phases: {
+            pre_build: {
+                commands: [
+                    '/usr/local/bin/dockerd-entrypoint.sh', // Set in official image, but ignored
+                ]
+            },
+            build: {
+                commands: [
+                    'docker build ...',
+        },
+    });
+
+```
