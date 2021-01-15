@@ -174,16 +174,16 @@ RUN set -eux; \
         libc6-dev \
         wget \
         ; \
-    url="https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/amd64/rustup-init"; \
+    url="https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/x86_64-unknown-linux-gnu/rustup-init"; \
     wget "$url"; \
     echo "${RUSTUP_INIT_SHA256} *rustup-init" | sha256sum -c -; \
     chmod +x rustup-init; \
-    ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host ${rustArch}; \
+    ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host x86_64-unknown-linux-gnu; \
     rm rustup-init; \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
     rustup --version; \
     cargo --version; \
-    rustc --version;
+    rustc --version
 
 #**************** End of RUST **************************************************
 
