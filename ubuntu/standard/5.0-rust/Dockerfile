@@ -155,38 +155,6 @@ ENV GOPATH="/go"
 #=======================End of layer: tools  =================
 FROM tools AS runtimes
 
-#**************** RUST *********************************************************
-
-ARG RUST_VERSION="1.49.0"
-ARG RUSTUP_VERSION="1.23.1"
-ARG RUSTUP_INIT_SHA256="ed7773edaf1d289656bdec2aacad12413b38ad0193fff54b2231f5140a4b07c5"
-
-ENV RUSTUP_HOME=/usr/local/rustup \
-    CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=${RUST_VERSION}
-
-RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-        ca-certificates \
-        gcc \
-        libc6-dev \
-        wget \
-        ; \
-    url="https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/x86_64-unknown-linux-gnu/rustup-init"; \
-    wget "$url"; \
-    echo "${RUSTUP_INIT_SHA256} *rustup-init" | sha256sum -c -; \
-    chmod +x rustup-init; \
-    ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host x86_64-unknown-linux-gnu; \
-    rm rustup-init; \
-    chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
-    rustup --version; \
-    cargo --version; \
-    rustc --version
-
-#**************** End of RUST **************************************************
-
 #****************     .NET-CORE     *******************************************************
 
 ENV DOTNET_31_SDK_VERSION="3.1.404"
@@ -453,8 +421,43 @@ RUN set -ex \
 VOLUME /var/lib/docker
 #*********************** END  DOCKER  ****************************
 
+FROM runtimes_n_corretto AS rust
+
+#**************** RUST *********************************************************
+
+ARG RUST_VERSION="1.49.0"
+ARG RUSTUP_VERSION="1.23.1"
+ARG RUSTUP_INIT_SHA256="ed7773edaf1d289656bdec2aacad12413b38ad0193fff54b2231f5140a4b07c5"
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH \
+    RUST_VERSION=${RUST_VERSION}
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        gcc \
+        libc6-dev \
+        wget \
+        ; \
+    url="https://static.rust-lang.org/rustup/archive/${RUSTUP_VERSION}/x86_64-unknown-linux-gnu/rustup-init"; \
+    wget "$url"; \
+    echo "${RUSTUP_INIT_SHA256} *rustup-init" | sha256sum -c -; \
+    chmod +x rustup-init; \
+    ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION --default-host x86_64-unknown-linux-gnu; \
+    rm rustup-init; \
+    chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
+    rustup --version; \
+    cargo --version; \
+    rustc --version
+
+#**************** End of RUST **************************************************
+
+
 #=======================End of layer: corretto  =================
-FROM runtimes_n_corretto AS std_v5
+FROM rust AS std_v5
 
 # Activate runtime versions specific to image version.
 RUN n $NODE_14_VERSION
