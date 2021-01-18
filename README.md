@@ -6,7 +6,7 @@ It is based on [aws/aws-codebuild-docker-images](https://github.com/aws/aws-code
 The images are published to dockerhub at *couragium/aws-codebuild-images*
 
 There are five flavours available:
-* slim: Debian stable slim with AWS tools and Docker-in-Docker
+* slim: Debian stable slim with AWS CLI v2 and Docker-in-Docker
 * slim-rust: Like slim, but with rust installed
 * slim-rust-cache: Like slim-rust, but with [mozilla/sccache](https://github.com/mozilla/sccache) installed
 * standard-5.0: Built from official curated Dockerfile, no changes
@@ -33,14 +33,14 @@ Or pass it to your build project
 
 ```
 
-AWS CodeBuild ignores the [*ENTRYPOINT*](https://github.com/aws/aws-codebuild-docker-images/issues/254) so if you need to run a docker command, you should start the daemon yourself in your spec:
+Should you need to run a docker command, please start the daemon yourself in your buildspec:
 ```typescript
     const spec = codebuild.BuildSpec.fromObject({
         //[...]
         phases: {
             pre_build: {
                 commands: [
-                    '/usr/local/bin/dockerd-entrypoint.sh', // Set in official image, but ignored
+                    '/usr/local/bin/dockerd-entrypoint.sh', // From standard-5.0
                 ]
             },
             build: {
