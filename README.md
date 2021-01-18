@@ -3,7 +3,7 @@
 This repository holds Dockerfiles of AWS CodeBuild Docker images.
 It is based on [aws/aws-codebuild-docker-images](https://github.com/aws/aws-codebuild-docker-images) and [rust-lang/docker-rust](https://github.com/rust-lang/docker-rust)
 
-The images are published to dockerhub at *couragium/aws-codebuild-images*
+The images are published to dockerhub at [*couragium/aws-codebuild-images*](https://hub.docker.com/r/couragium/aws-codebuild-images)
 
 There are five flavours available:
 * slim: Debian stable slim with AWS CLI v2 and Docker-in-Docker
