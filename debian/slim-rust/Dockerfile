@@ -11,6 +11,7 @@ RUN set -ex \
     && echo 'Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/99use-gzip-compression \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+          ca-certificates \
           autoconf automake build-essential bzip2 \
           curl expect file g++ gcc gzip iptables jq less \
           libssl-dev locales make netbase openssl \

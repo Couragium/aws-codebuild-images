@@ -5,6 +5,7 @@ RUN set -ex \
     && echo 'Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/99use-gzip-compression \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
+          ca-certificates \
           amazon-ecr-credential-helper \
           curl gzip iptables jq \
           libssl-dev locales \
