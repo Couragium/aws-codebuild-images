@@ -5,6 +5,8 @@ FROM rust:${RUST_VERSION}-slim AS base
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y libssl-dev pkg-config && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN rustup component add rustfmt
+
 RUN cargo install sccache
 
 RUN cargo install cargo-cache && cargo cache --autoclean
