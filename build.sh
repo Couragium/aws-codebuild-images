@@ -9,7 +9,6 @@ RUSTUP_INIT_SHA256="ed7773edaf1d289656bdec2aacad12413b38ad0193fff54b2231f5140a4b
 
 cd debian/slim
 docker build \
-    --build-arg RUST_VERSION="${RUST_VERSION}" \
     --tag  ${REPOSITORY}:slim \
     .
 cd "$OLDPWD"
