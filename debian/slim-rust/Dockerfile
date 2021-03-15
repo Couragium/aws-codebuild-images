@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y libssl-dev pkg-config && apt-get clean 
 
 RUN rustup component add rustfmt
 
+RUN rustup component add clippy
+
 FROM base AS packages
 
 RUN set -ex \
