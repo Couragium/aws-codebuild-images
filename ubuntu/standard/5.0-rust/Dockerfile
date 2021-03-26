@@ -425,7 +425,7 @@ FROM runtimes_n_corretto AS rust
 
 #**************** RUST *********************************************************
 
-ARG RUST_VERSION="1.50.0"
+ARG RUST_VERSION="1.51.0"
 ARG RUSTUP_VERSION="1.23.1"
 ARG RUSTUP_INIT_SHA256="ed7773edaf1d289656bdec2aacad12413b38ad0193fff54b2231f5140a4b07c5"
 
