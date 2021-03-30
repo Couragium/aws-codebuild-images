@@ -17,7 +17,7 @@ cd debian/slim-rust
 docker build \
     --build-arg RUST_VERSION="${RUST_VERSION}" \
     --tag  ${REPOSITORY}:slim-rust \
-    --tag  ${REPOSITORY}:slim-${RUST_VERSION} \
+    --tag  ${REPOSITORY}:slim-rust-${RUST_VERSION} \
     .
 cd "$OLDPWD"
 
@@ -25,7 +25,7 @@ cd debian/slim-rust-cache
 docker build \
     --build-arg RUST_VERSION="${RUST_VERSION}" \
     --tag  ${REPOSITORY}:slim-rust-cache \
-    --tag  ${REPOSITORY}:slim-${RUST_VERSION}-cache \
+    --tag  ${REPOSITORY}:slim-rust-${RUST_VERSION}-cache \
     .
 cd "$OLDPWD"
 
