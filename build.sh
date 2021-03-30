@@ -3,8 +3,6 @@
 REPOSITORY="couragium/aws-codebuild-images"
 
 RUST_VERSION="1.51"
-RUSTUP_VERSION="1.23.1"
-RUSTUP_INIT_SHA256="ed7773edaf1d289656bdec2aacad12413b38ad0193fff54b2231f5140a4b07c5"
 
 
 cd debian/slim
