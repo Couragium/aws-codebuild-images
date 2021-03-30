@@ -29,20 +29,5 @@ docker build \
     .
 cd "$OLDPWD"
 
-cd ubuntu/standard/5.0
-docker build \
-    --tag  ${REPOSITORY}:standard-5.0 \
-    .
-cd "$OLDPWD"
-
-cd ubuntu/standard/5.0-rust
-docker build \
-    --build-arg RUST_VERSION="${RUST_VERSION}" \
-    --build-arg RUSTUP_VERSION="${RUSTUP_VERSION}" \
-    --build-arg RUSTUP_INIT_SHA256="${RUSTUP_INIT_SHA256}" \
-    --tag  ${REPOSITORY}:standard-5.0-rust \
-    .
-cd "$OLDPWD"
-
 
 docker push ${REPOSITORY} --all-tags

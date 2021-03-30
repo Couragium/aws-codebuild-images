@@ -5,12 +5,12 @@ It is based on [aws/aws-codebuild-docker-images](https://github.com/aws/aws-code
 
 The images are published to dockerhub at [*couragium/aws-codebuild-images*](https://hub.docker.com/r/couragium/aws-codebuild-images)
 
-There are five flavours available:
+The Dockerfiles are at [*Couragium/aws-codebuild-images*](https://github.com/Couragium/aws-codebuild-images/tree/main/debian)
+
+There are three flavours available:
 * slim: Debian stable slim with AWS CLI v2 and Docker-in-Docker
 * slim-rust: Like slim, but with rust installed
 * slim-rust-cache: Like slim-rust, but with [mozilla/sccache](https://github.com/mozilla/sccache) installed
-* standard-5.0: Built from official curated Dockerfile, no changes
-* standard-5.0-rust: Like standard, but with rust installed
 
 You can download the image with
 ```bash
