@@ -2,7 +2,7 @@
 
 REPOSITORY="couragium/aws-codebuild-images"
 
-RUST_VERSION="1.51"
+RUST_VERSION="1.52.1"
 
 
 cd debian/slim
