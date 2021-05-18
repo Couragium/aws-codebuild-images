@@ -1,4 +1,4 @@
-ARG RUST_VERSION="1.51"
+ARG RUST_VERSION="1.52.1"
 
 FROM rust:${RUST_VERSION}-slim AS base
 
